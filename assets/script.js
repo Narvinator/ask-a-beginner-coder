@@ -16,6 +16,7 @@ function startQuiz() {
 }
 
 
+
 var quizQuestions = [
     {
         question: "Which HTML element will have most of your text?",
@@ -24,6 +25,13 @@ var quizQuestions = [
     },
    
 ];
+
+quizQuestions.push({
+    question: "Which planet is known as the Red Planet?",
+    options: ["Mars", "Venus", "Jupiter"],
+    correctAnswer: "mars"
+});
+
 
 var currentQuestionIndex = 0;
 
@@ -52,11 +60,39 @@ var timerElement = document.getElementById("timer");
 function startTimer() {
     timerInterval = setInterval(function() {
         timeRemaining--;
-        timerElement.textContent = `Time remaining: ${timeRemaining} seconds;`
+        timerElement.textContent = `Time remaining: ${timeRemaining} seconds`;
         
         if (timeRemaining <=0) {
             clearInterval(timerInterval);
             timerElement.textcontent = "Time's up!";
         }
     }, 1000);
+}
+
+
+nextButton.addEventListener("click", nextQuestion);
+
+function nextQuestion() {
+    const selectedOption = document.querySelector("input[name='q" + (currentQuestionIndex + 1) + "']:checked");
+
+    if (!selectedOption) {
+        alert("No option selected");
+        return;
+    }
+
+    const userAnswer = selectedOption.value;
+    const correctAnswer = quizQuestions[currentQuestionIndex].correctAnswer;
+
+    if (userAnswer === correctAnswer) {
+       
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < quizQuestions.length) {
+        displayQuestion();
+    } else {
+        
+        questionContainer.innerHTML = "<h2>Game Over</h2>";
+    }
 }
