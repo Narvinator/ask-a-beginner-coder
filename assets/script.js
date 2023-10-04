@@ -11,8 +11,8 @@ startButton.addEventListener("click", startQuiz);
 
 function startQuiz() {
     document.getElementById("question-div");
-    showQuestion()
-
+    showQuestion();
+    startTimer();
 }
 
 
@@ -45,7 +45,18 @@ function showQuestion(){
 
 }
 
+var timerInterval;
+var timeRemaining = 60;
+var timerElement = document.getElementById("timer");
 
-
-
-
+function startTimer() {
+    timerInterval = setInterval(function() {
+        timeRemaining--;
+        timerElement.textContent = `Time remaining: ${timeRemaining} seconds;`
+        
+        if (timeRemaining <=0) {
+            clearInterval(timerInterval);
+            timerElement.textcontent = "Time's up!";
+        }
+    }, 1000);
+}
