@@ -6,6 +6,9 @@
     <title>Ask a Beginner Coder</title>
     <link rel="stylesheet" href ="assets/styles.css">
 
+
+<!-- The quiz div was used here to display the 1st part of the assignment -->
+
 </head>
     <div id="quiz-div">
         <h1>Ask a Beginner Coder</h1>
@@ -13,6 +16,9 @@
             Wrong answers will decrease your score and time left by 10 seconds!</p>
         <button id="startButton">Start Quiz</button>
     </div>
+
+<!-- The question div is used for the 1st question of the quiz for Javascript to work off of -->
+
     <div id="question-div" style="display: none;">
         <h2>Do your best!</h2>
         <p id="questionText">Which HTML element will have most of your text?</p>
@@ -23,17 +29,31 @@
             <li><input type="radio" name="q1" value="Nav">Nav</li>
         </ul>
         <button id="nextButton">Next Question</button>
+
+<!-- The #Timer is hard coded used for 60 seconds to be displayed, represeting well, the timer -->
+
         <div id="timer">Time remaining: 60 seconds</div>
     </div>
+
+<!-- Game Over is pretty self explanatory, it is what the screen will display after you finish whether you time out or finish the quiz -->
+
     <div id="game-over" style="display: none;">
         <h2>Game Over</h2>
         <p id="resultText"></p>
         <p id="timeRemainingText"></p>
+
+<!-- THe initial input and label are used for putting your initials in at the end of the quiz -->
+
         <label for="initials">Enter Your Initials:</label>
         <input type="text" id="initials" placeholder="Your initials">
+
+<!-- The Save score button will store your score after you finish the quiz used in conjunction with the initials -->
+
         <button id="saveScoreButton">Store Score</button>
         <button id="showScoresButton">View Scores</button>
     </div>
+
+    <!-- On a separate page, past scores will be stored what is what this div is for -->
     <div id="past-scores" style="display: none;">
         <h2>Past Scores</h2>
         <ul id="scoreList"></ul>

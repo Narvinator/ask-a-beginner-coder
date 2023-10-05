@@ -1,8 +1,14 @@
+// This Script section was organized in chronological order of when I personally completed each part of the page
+
+
+// I put some of the general ID elements up first and I believe the Start button was the main priority intially
+
 var startButton = document.getElementById("startButton");
 var answers = document.getElementById("answers");    
 var questionText = document.getElementById("questionText");
 var questionDiv = document.getElementById("question-div");
     
+// Everything the actual event of clicking is right here stil near the start button ID
 
 startButton.addEventListener("click", startQuiz);   
     
@@ -14,8 +20,10 @@ function startQuiz() {
     startTimer();
 }
 
+// The function to get the project moving start with well, the startQuiz function.
 
 
+// The next most important part of the assignment the questions for the quiz.
 var quizQuestions = [
     {
         question: "Which HTML element will have most of your text?",
@@ -30,6 +38,10 @@ quizQuestions.push({
     options: ["Draft", "Mock-up", "Mock-Draft", "Draw-up" ],
     correctAnswer: "mock-up"
 });
+
+// .push was used for subsequent questions to always be in order, at the end, and next.
+
+// The currentQuestionIndex was created for use in the for loop to change to every question.
 
     var currentQuestionIndex = 0;
 
@@ -51,6 +63,8 @@ quizQuestions.push({
     }
 
 
+// The timer elements are kept closely together and the increment of 1000 will represent 1 second of the 60 it has to count down.
+
     var timerInterval;
     var timeRemaining = 60;
     var timerElement = document.getElementById("timer");
@@ -62,7 +76,7 @@ quizQuestions.push({
 
             if (timeRemaining <= 0) {
                 clearInterval(timerInterval);
-                timerElement.textContent = "Time's up!";
+                timerElement.textContent = "Done!";
             }
         }, 1000);
     }
@@ -72,6 +86,8 @@ quizQuestions.push({
     nextButton.addEventListener("click", nextQuestion);
 
 
+// The very long next question function will force a selection, manage the correct and incorrect questions, give the time penalty of
+// 10 seconds, give you several of the messages on the quiz done screen.
 
     function nextQuestion() {
         var selectedOption = document.querySelector("input[name='q" + (currentQuestionIndex + 1) + "']:checked");
@@ -115,16 +131,17 @@ quizQuestions.push({
                 document.getElementById("question-div").style.display = "none";
                 document.getElementById("game-over").style.display = "block";
             } else {
-                timerElement.textContent = "Time's up!";
+                timerElement.textContent = "Done!";
             }
         }
     }
 
+    // The vars here set to 0 so that they can be counted in the final message and the scores page
 
     var correctAnswers = 0;
 var incorrectAnswers = 0;
 
-
+// These are used self-explanotory, but well the initial input is where it can be stored on the page
 
 var saveScoreButton = document.getElementById("saveScoreButton");
 var initialsInput = document.getElementById("initials");
@@ -145,6 +162,9 @@ initialsInput.value = "";
 alert(`Score stored for ${userInitials}: ${correctAnswers} correct, ${incorrectAnswers} incorrect.`);}); 
 
 var showScoresButton = document.getElementById("showScoresButton");
+
+// This showsScoreButton and section was created because I thought that the scores would be availible in local storage,
+// but it does allow the stores to be saved on the webpage for easier access to "non" coders. 
 
 
 showScoresButton.addEventListener("click", function() {
