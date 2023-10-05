@@ -121,5 +121,24 @@ quizQuestions.push({
     }
 
 
-var correctAnswers = 0;
+    var correctAnswers = 0;
 var incorrectAnswers = 0;
+
+
+var saveScoreButton = document.getElementById("saveScoreButton");
+var initialsInput = document.getElementById("initials");
+
+
+saveeScoreButton.addEventListener("click", function() {
+    var userInitials = initialsInput.value.trim();
+    if (userInitials === "") {
+        alert("Enter your initials.");
+        return;
+    }
+
+
+scores.push({ initials: userInitials, correct: correctAnswers, incorrectAnswers}); 
+
+initialsInput.value = "";
+
+alert('Score stored for ${userInitials}: ${correctAnswers} correct, ${incorrectAnswers} incorrect.');}); 
