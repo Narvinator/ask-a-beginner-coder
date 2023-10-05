@@ -125,11 +125,12 @@ quizQuestions.push({
 var incorrectAnswers = 0;
 
 
+
 var saveScoreButton = document.getElementById("saveScoreButton");
 var initialsInput = document.getElementById("initials");
 
 
-saveeScoreButton.addEventListener("click", function() {
+saveScoreButton.addEventListener("click", function() {
     var userInitials = initialsInput.value.trim();
     if (userInitials === "") {
         alert("Enter your initials.");
@@ -141,4 +142,30 @@ scores.push({ initials: userInitials, correct: correctAnswers, incorrectAnswers}
 
 initialsInput.value = "";
 
-alert('Score stored for ${userInitials}: ${correctAnswers} correct, ${incorrectAnswers} incorrect.');}); 
+alert(`Score stored for ${userInitials}: ${correctAnswers} correct, ${incorrectAnswers} incorrect.`);}); 
+
+var viewScoresButton = document.getElementById("viewScoresButton")
+
+
+viewScoresButton.addEventListener("click", function() {
+    document.getElementById("quiz-div")
+    document.getElementById("question-div")
+    document.getElementById("game-over")
+    document.getElementById("scores")
+})
+
+var scores = [];
+
+
+function displayScores() {
+    var scoreList = documents.getElementById("scoreList");
+    scoreList.innerHTML = "";
+    scores.forEach((score, index) => {
+        var listEL = document.createElement("li");
+        listEl.textContent = `Score $(index + 1): ${score.initials} - ${score.correct} correct; ${score.incorrect} incorrect`;
+        scoreList.appendChild(listEl);
+    }
+
+    );
+
+}
