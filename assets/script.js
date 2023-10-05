@@ -1,17 +1,16 @@
-
-
 var startButton = document.getElementById("startButton");
-var questionDiv= document.getElementById("question-div");
+var answers = document.getElementById("answers");    
 var questionText = document.getElementById("questionText");
-var answers = document.getElementById("answers");
+var questionDiv = document.getElementById("question-div");
+    
 
-
-startButton.addEventListener("click", startQuiz);
-
+startButton.addEventListener("click", startQuiz);   
+    
 
 function startQuiz() {
-    document.getElementById("question-div");
-    showQuestion();
+    document.getElementById("quiz-div").style.display = "none";
+    questionDiv.style.display = "block";
+    displayQuestion();
     startTimer();
 }
 
@@ -21,56 +20,58 @@ var quizQuestions = [
     {
         question: "Which HTML element will have most of your text?",
         options: ["Body", "Head", "Footer", "Nav"],
-        correctAnswer: "Body"
+        correctAnswer: "body"
     },
    
 ];
 
 quizQuestions.push({
-    question: "Which planet is known as the Red Planet?",
-    options: ["Mars", "Venus", "Jupiter"],
-    correctAnswer: "mars"
+    question: "What is drawn up or created before you even start any project?",
+    options: ["Draft", "Mock-up", "Mock-Draft", "Draw-up" ],
+    correctAnswer: "mock-up"
 });
 
+    var currentQuestionIndex = 0;
 
-var currentQuestionIndex = 0;
+    function displayQuestion() {
+        var currentQuestion = quizQuestions[currentQuestionIndex];
+        questionText.textContent = currentQuestion.question;
+        answers.innerHTML = "";
 
-
-function showQuestion(){
-    var currentQuestion = quizQuestions[currentQuestionIndex];
-    questionText.textContent = currentQuestion.question;
-    answers.innerHTML = "";
-
-    for (var option of currentQuestion.options) {
-        var listEl = document.createElement("li");
-        var radioInput = document.createElement("input");
-        radioInput.type = "radio";
-        radioInput.name = "q" + (currentQuestionIndex + 1);
-        listEl.appendChild(radioInput);
-        listEl.appendChild(document.createTextNode(option));
-        answers.appendChild(listEl);
+        for (var option of currentQuestion.options) {
+            var listEl = document.createElement("li");
+            var radioInput = document.createElement("input");
+            radioInput.type = "radio";
+            radioInput.name = "q" + (currentQuestionIndex + 1);
+            radioInput.value = option.toLowerCase();
+            listEl.appendChild(radioInput);
+            listEl.appendChild(document.createTextNode(option));
+            answers.appendChild(listEl);
+        }
     }
 
-}
 
-var timerInterval;
-var timeRemaining = 60;
-var timerElement = document.getElementById("timer");
+    var timerInterval;
+    var timeRemaining = 60;
+    var timerElement = document.getElementById("timer");
 
-function startTimer() {
-    timerInterval = setInterval(function() {
-        timeRemaining--;
-        timerElement.textContent = `Time remaining: ${timeRemaining} seconds`;
-        
-        if (timeRemaining <=0) {
-            clearInterval(timerInterval);
-            timerElement.textcontent = "Time's up!";
-        }
-    }, 1000);
-}
+    function startTimer() {
+        timerInterval = setInterval(function() {
+            timeRemaining--;
+            timerElement.textContent = `Time remaining: ${timeRemaining} seconds`;
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = "Time's up!";
+            }
+        }, 1000);
+    }
+    
+    var nextButton = document.getElementById("nextButton");
+   
+    nextButton.addEventListener("click", nextQuestion);
 
 
-nextButton.addEventListener("click", nextQuestion);
 
 function nextQuestion() {
     const selectedOption = document.querySelector("input[name='q" + (currentQuestionIndex + 1) + "']:checked");

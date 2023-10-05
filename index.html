@@ -7,30 +7,28 @@
     <link rel="stylesheet" href ="assets/styles.css">
 
 </head>
-<body>
     <div id="quiz-div">
-   <h1>Ask a Beginner Coder</h1> 
-   <p>With very basic coding knowledge this quiz, this quiz can be playable.
-    If your you pick the wrong answer, your overall score and time remaining will decrease by 10 seconds!
-   </p>
-     <button id="startButton">Start Quiz</button>
+        <h1>Ask a Beginner Coder</h1>
+        <p>With very basic coding knowledge, this quiz can be playable. 
+            Wrong answers will decrease your score and time left by 10 seconds!</p>
+        <button id="startButton">Start Quiz</button>
     </div>
-<div id="question-div">
-    <h2>Do your best!</h2>
-    <p id="questionText">Which HTML element will have most of your text?</p>
-    <ul id="answers">
-        <li><input type="radio" name="q1" value="Body">Body</li>
-        <li><input type="radio" name="q1" value="Head">Head</li>
-        <li><input type="radio" name="q1" value="Footer">Footer</li>
-        <li><input type="radio" name="q1" value="Nav">Nav</li>
-    </ul>
-    <button id="nextButton">Next Question</button>
-    <div id="timer">Time left 60 seconds</div>
-</div>
-<div id="game-over" style="display: none;">
-    <h2>Game Over</h2>
-    <p id="resultText"></p>
-    <p id="timeRemainingText"></p> 
+    <div id="question-div" style="display: none;">
+        <h2>Do your best!</h2>
+        <p id="questionText">Which HTML element will have most of your text?</p>
+        <ul id="answers">
+            <li><input type="radio" name="q1" value="Body">Body</li>
+            <li><input type="radio" name="q1" value="Head">Head</li>
+            <li><input type="radio" name="q1" value="Footer">Footer</li>
+            <li><input type="radio" name="q1" value="Nav">Nav</li>
+        </ul>
+        <button id="nextButton">Next Question</button>
+        <div id="timer">Time remaining: 60 seconds</div>
+    </div>
+    <div id="game-over"mplete style="display: none;">
+        <h2>Game Over</h2>
+        <p id="resultText"></p>
+        <p id="timeRemainingText"></p>
 
 
 
@@ -38,4 +36,3 @@
 
    </script>
 </body>
-</html>
