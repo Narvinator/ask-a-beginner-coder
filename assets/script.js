@@ -73,27 +73,53 @@ quizQuestions.push({
 
 
 
-function nextQuestion() {
-    const selectedOption = document.querySelector("input[name='q" + (currentQuestionIndex + 1) + "']:checked");
+    function nextQuestion() {
+        var selectedOption = document.querySelector("input[name='q" + (currentQuestionIndex + 1) + "']:checked");
 
-    if (!selectedOption) {
-        alert("No option selected");
-        return;
+        if (!selectedOption) {
+            alert("No option selected.");
+            return;
+        }
+
+        var userAnswer = selectedOption.value;
+        var correctAnswer = quizQuestions[currentQuestionIndex].correctAnswer;
+
+        if (userAnswer === correctAnswer) {
+            correctAnswers++;
+        } else {
+            timeRemaining -= 10;
+            if (timeRemaining < 0) {
+                timeRemaining = 0;
+            }
+            incorrectAnswers++;
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < quizQuestions.length) {
+            displayQuestion();
+        } else {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
+            if (timeRemaining > 0) {
+                timerElement.textContent = `Game Over' Time remaining: ${timeRemaining} seconds`;
+
+                var resultText = document.getElementById("resultText");
+                resultText.textContent = `Your score: ${correctAnswers} correct, ${incorrectAnswers} incorrect.`;
+
+                var timeRemainingText = document.getElementById("timeRemainingText");
+                timeRemainingText.textContent = `Time remaining: ${timeRemaining} seconds`;
+
+                document.getElementById("question-div").style.display = "none";
+                document.getElementById("game-over").style.display = "block";
+            } else {
+                timerElement.textContent = "Time's up!";
+            }
+        }
     }
 
-    const userAnswer = selectedOption.value;
-    const correctAnswer = quizQuestions[currentQuestionIndex].correctAnswer;
 
-    if (userAnswer === correctAnswer) {
-       
-    }
-
-    currentQuestionIndex++;
-
-    if (currentQuestionIndex < quizQuestions.length) {
-        displayQuestion();
-    } else {
-        
-        questionContainer.innerHTML = "<h2>Game Over</h2>";
-    }
-}
+var correctAnswers = 0;
+var incorrectAnswers = 0;
