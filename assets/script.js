@@ -135,37 +135,36 @@ saveScoreButton.addEventListener("click", function() {
     if (userInitials === "") {
         alert("Enter your initials.");
         return;
-    }
+    };
 
 
-scores.push({ initials: userInitials, correct: correctAnswers, incorrectAnswers}); 
+scores.push({ initials: userInitials, correct: correctAnswers, incorrect: incorrectAnswers}); 
 
 initialsInput.value = "";
 
 alert(`Score stored for ${userInitials}: ${correctAnswers} correct, ${incorrectAnswers} incorrect.`);}); 
 
-var viewScoresButton = document.getElementById("viewScoresButton")
+var showScoresButton = document.getElementById("showScoresButton");
 
 
-viewScoresButton.addEventListener("click", function() {
-    document.getElementById("quiz-div")
-    document.getElementById("question-div")
-    document.getElementById("game-over")
-    document.getElementById("scores")
-})
+showScoresButton.addEventListener("click", function() {
+    document.getElementById("quiz-div").style.display = "none";
+    document.getElementById("question-div").style.display = "none";
+    document.getElementById("game-over").style.display = "none";
+    document.getElementById("past-scores").style.display = "block";
+    displayScores();
+});
 
 var scores = [];
 
 
 function displayScores() {
-    var scoreList = documents.getElementById("scoreList");
+    var scoreList = document.getElementById("scoreList");
     scoreList.innerHTML = "";
     scores.forEach((score, index) => {
-        var listEL = document.createElement("li");
-        listEl.textContent = `Score $(index + 1): ${score.initials} - ${score.correct} correct; ${score.incorrect} incorrect`;
+        var listEl = document.createElement("li");
+        listEl.textContent = `Score ${index + 1}: ${score.initials} - ${score.correct} correct, ${score.incorrect} incorrect`;
         scoreList.appendChild(listEl);
-    }
-
-    );
+    });
 
 }
